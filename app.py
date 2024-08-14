@@ -8,8 +8,8 @@ from io import StringIO
 
 load_dotenv()
 
-supabase_url = os.getenv('SUPABASE_CLIENT_URL')
-supabase_key = os.getenv('SUPABASE_CLIENT_KEY')
+supabase_url = st.secrets['SUPABASE_CLIENT_URL']
+supabase_key = st.secrets['SUPABASE_CLIENT_KEY']
 
 st.set_page_config(
    page_title="Dashboard Sakernas",
