@@ -39,7 +39,7 @@ st.dataframe(df, hide_index=True)
 
 buffer = BytesIO()
 with pd.ExcelWriter(buffer) as writer:
-    df.to_excel(writer, "Sheet1")
+    df.to_excel(writer, "Sheet1", index=False)
     writer.close()
     st.download_button(
         label="Download Excel",
