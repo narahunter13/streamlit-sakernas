@@ -2,7 +2,7 @@ from supabase import create_client, Client
 import streamlit as st
 import pandas as pd
 from json import loads
-from io import StringIO
+from io import StringIO, BytesIO
 from datetime import datetime
 import pytz
 
@@ -36,3 +36,13 @@ updated_time = datetime.fromtimestamp(loads(response)['data']['updated_at'], tim
 st.header("Tabulasi Progres")
 st.subheader(f"Update Terakhir: {updated_time.strftime('%Y-%m-%d %H:%M:%S')} WIB")
 st.dataframe(df, hide_index=True)
+
+buffer = BytesIO()
+with pd.ExcelWriter(buffer) as writer:
+    df.to_excel(writer, "Sheet1")
+    writer.close()
+    st.download_button(
+        label="Download Excel",
+        data=buffer,
+        file_name=f"sakernas_progres_{updated_time.strftime('%Y%m%d%H%M%S')}.xlsx",
+    )
