@@ -29,7 +29,7 @@ response = (
 json = StringIO(loads(response)['data']['data'])
 df = pd.read_json(json)
 
-updated_time = datetime.fromtimestamp(loads(response)['data']['updated_by'])
+updated_time = datetime.fromtimestamp(loads(response)['data']['updated_at'])
 
 st.header("Tabulasi Progres")
 st.subheader(f"Update Terakhir: {updated_time.strftime('%Y-%m-%d %H:%M:%S')}")
