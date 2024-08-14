@@ -3,6 +3,7 @@ import streamlit as st
 import pandas as pd
 from json import loads
 from io import StringIO
+from datetime import datetime
 
 supabase_url = st.secrets['SUPABASE_CLIENT_URL']
 supabase_key = st.secrets['SUPABASE_CLIENT_KEY']
@@ -28,5 +29,8 @@ response = (
 json = StringIO(loads(response)['data']['data'])
 df = pd.read_json(json)
 
+updated_time = datetime.fromtimestamp(loads(response)['data']['updated_by'])
+
 st.header("Tabulasi Progres")
+st.subheader(f"Update Terakhir: {updated_time.strftime('%Y-%m-%d %H:%M:%S')}")
 st.dataframe(df, hide_index=True)
