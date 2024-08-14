@@ -1,12 +1,8 @@
 from supabase import create_client, Client
-import os
-from dotenv import load_dotenv
 import streamlit as st
 import pandas as pd
 from json import loads
 from io import StringIO
-
-load_dotenv()
 
 supabase_url = st.secrets['SUPABASE_CLIENT_URL']
 supabase_key = st.secrets['SUPABASE_CLIENT_KEY']
